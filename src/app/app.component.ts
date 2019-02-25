@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'totvs-leiloes';
+  menus = [
+    { label: 'Login', link: './login-page' },
+    { label: 'Adicionar Leilão', link: './add-leilao' },
+  ];
 }

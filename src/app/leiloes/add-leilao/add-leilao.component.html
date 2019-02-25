@@ -1,0 +1,19 @@
+<thf-page-default>
+  <thf-toolbar t-title="Adicionar Leilão"></thf-toolbar>
+    <div class="form-group">
+      <thf-dynamic-form #dynamicForm
+        [t-fields]="fields"
+        [t-value]="person">
+      </thf-dynamic-form>
+      <div class="thf-row">
+        <thf-button
+          t-label="Adicionar"
+          t-type="submit"
+          class="thf-md-3 thf-ml-4"
+          [t-disabled]="dynamicForm?.form.invalid"
+          (t-click)="addLeilao(dynamicForm.form.value)">
+        </thf-button>
+      </div>
+    </div>
+</thf-page-default>
+

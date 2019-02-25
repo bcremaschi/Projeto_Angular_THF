@@ -1,0 +1,16 @@
+{
+  "login": [
+    { "id": 1, "email": "bruno" },
+    { "id": 2, "password": "123" }
+  ],
+
+  "add-leilao": [
+    {
+      "name": "",
+      "photo": "",
+      "base_price": "",
+      "bid_type" : "" ,
+      "bid_step" : ""
+    }
+  ]
+}
