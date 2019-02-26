@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { NewLeilao } from './new-leilao';
 
-const API_URL = 'https://localhost:3000';
+const API_URL = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root'})
 

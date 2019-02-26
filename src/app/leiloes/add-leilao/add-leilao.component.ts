@@ -1,26 +1,26 @@
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ThfDynamicFormField, ThfSelectOption } from '@totvs/thf-ui';
+import {  ThfComboOption } from '@totvs/thf-ui';
 import { AddLeilaoService } from './add-leilao.service';
-import { NgForm } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewLeilao } from './new-leilao';
-
+import { ThfModalAction, ThfModalComponent } from '@totvs/thf-ui/components/thf-modal';
+import { ThfUploadFile } from '@totvs/thf-ui/components/thf-field/thf-upload/thf-upload-file';
 
 @Component({
   selector: 'add-leilao-page',
   templateUrl: './add-leilao.component.html'
 })
 export class AddLeilaoComponent implements OnInit {
+  addLeilaoForm: FormGroup;
 
-  @ViewChild('dynamicForm') form: NgForm;
+  types_bid: Array<ThfComboOption>;
+  photo: ThfUploadFile;
 
-  name: string;
-  base_price: number;
-  photo: string;
-  bid_type: Array<ThfSelectOption>;
-  bid_step: number;
+  //@ViewChild('dynamicForm') form: NgForm;
 
+  /*
   person = {};
   fields: Array<ThfDynamicFormField> = [
     { property: 'name', label: 'Produto:', required: true, type:'string', minLength: 4, maxLength: 50, gridColumns: 6, gridSmColumns: 12 },
@@ -32,21 +32,61 @@ export class AddLeilaoComponent implements OnInit {
     ]},
     { property: 'bid_step', label: 'Valor do Lance:', required: true, disabled:true, type: 'currency', gridColumns: 6 },
   ];
+  */
+  constructor(private formBuilder: FormBuilder,
+              private thfNotification: ThfNotificationService,
+              private addLeilaoService: AddLeilaoService,
+              private router: Router) { }
 
-  constructor(private thfNotification: ThfNotificationService,
-              private router: Router,
-              private addLeilaoService: AddLeilaoService) { }
+  ngOnInit(): void {
+    this.types_bid = this.getTypes();
 
-  ngOnInit() {
+    this.addLeilaoForm = this.formBuilder.group({
+      name: ['',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(40)
+        ]
+      ],
+      base_price: [0,
+        [
+          Validators.required,
+          Validators.nullValidator
+        ]
+      ],
+      photo: [''],
+      bid_type: ['1',
+        [
+          Validators.required
+        ]
+      ]
+    });
+  }
+
+  private getTypes(): Array<ThfComboOption> {
+    return [
+      { label: 'Lance fixo', value: 'bid_fix' },
+      { label: 'Lance livre', value: 'bid_free' }
+    ];
+  }
+
+  private upload(event: ThfUploadFile) {
+    this.photo = event.file;
 
   }
 
-  addLeilao() {
-    const newLeilao = this.form.getRawValue() as NewLeilao;
+  private addLeilao() {
+    const newLeilao = this.addLeilaoForm.getRawValue() as NewLeilao;
+
+    console.log(newLeilao);
 
     this.addLeilaoService
       .addLeilao(newLeilao)
-      .subscribe(() => this.thfNotification.success('Data saved successfully!'),
+      .subscribe(() => {
+        this.thfNotification.success('Data saved successfully!');
+        this.form.reset();
+      },
       err => console.log(err)
     );
   }

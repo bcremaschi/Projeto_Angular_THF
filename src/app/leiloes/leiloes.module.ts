@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ThfPageModule, ThfTabsModule, ThfModule, ThfDynamicModule } from '@totvs/thf-ui';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ThfPageModule, ThfTabsModule, ThfModule, ThfDynamicModule, ThfFieldModule } from '@totvs/thf-ui';
 import { ThfNotificationModule } from '@totvs/thf-ui/services/thf-notification';
 import { ThfButtonModule } from '@totvs/thf-ui/components/thf-button';
+
+import { HomeModule } from './../home/home.module';
 
 import { AddLeilaoComponent } from './add-leilao/add-leilao.component';
 
@@ -17,7 +20,10 @@ import { AddLeilaoComponent } from './add-leilao/add-leilao.component';
     ThfButtonModule,
     ThfPageModule,
     ThfTabsModule,
-    FormsModule
+    ThfFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HomeModule
   ],
   exports: [
     AddLeilaoComponent

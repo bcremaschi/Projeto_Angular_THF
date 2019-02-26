@@ -6,7 +6,6 @@ import { AddLeilaoComponent } from './leiloes/add-leilao/add-leilao.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent},
-  { path: 'login-page', component: LoginPageComponent },
   { path: 'add-leilao', component: AddLeilaoComponent }
 ];
 

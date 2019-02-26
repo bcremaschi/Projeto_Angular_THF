@@ -7,10 +7,9 @@
   "add-leilao": [
     {
       "name": "",
-      "photo": "",
-      "base_price": "",
-      "bid_type" : "" ,
-      "bid_step" : ""
+      "photo": {},
+      "base_price": 0,
+      "bid_type" : "bid_fix"
     }
   ]
 }
