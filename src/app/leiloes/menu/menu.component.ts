@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   menus = [
-    { label: 'Adicionar Leilão', link: './add-leilao' }
+    { label: 'Meus Leilões', link: './add-leilao'},
+    { label: 'Adicionar Leilão', link: './add-leilao' },
+    { label: 'Leilões Abertos', link: './add-leilao'}
   ];
 
   constructor() { }
