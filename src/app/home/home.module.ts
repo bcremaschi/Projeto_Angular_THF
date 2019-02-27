@@ -6,12 +6,10 @@ import { AppComponent } from '../app.component';
 import { ThfPageLoginModule } from '@totvs/thf-templates/components/thf-page-login';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ThfModule } from '@totvs/thf-ui';
-import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
-    LoginPageComponent,
-    MenuComponent
+    LoginPageComponent
   ],
 
   imports: [
@@ -20,10 +18,6 @@ import { MenuComponent } from './menu/menu.component';
     ReactiveFormsModule,
     ThfModule,
     ThfPageLoginModule
-  ],
-
-  exports: [
-    MenuComponent
   ],
 
   providers: [],

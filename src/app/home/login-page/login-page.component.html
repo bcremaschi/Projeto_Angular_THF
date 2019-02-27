@@ -1,16 +1,29 @@
-<thf-page-default>
-    <thf-page-login
-        t-background="string"
-        t-contact-email="string"
-        t-custom-field="string | ThfPageLoginCustomField"
-        t-environment="Portal Leilões"
-        t-hide-remember-user="false"
-        t-literals="ThfPageLoginLiterals"
-        t-loading="true"
-        t-login=""
-        t-login-pattern="string"
-        (t-login-submit)="login()"
-        t-logo="string"
-        t-password-pattern="string">
-    </thf-page-login>
-</thf-page-default>
+<div class="wrapper fadeInDown">
+    <div class="login-form">
+        <form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+            <h2 class="text-center">Log in</h2>
+            <div class="form-group">
+                <input #userNameInput
+                    formControlName="email"
+                    class="form-control"
+                    placeholder="Email"
+                    required="required"
+                    autofocus>
+            </div>
+            <div class="form-group">
+                <input
+                    formControlName="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required="required">
+            </div>
+            <div class="form-group">
+                <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Log in</button>
+            </div>
+            <div class="clearfix">
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            </div>
+        </form>
+    </div>
+  </div>

@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <thf-page-default>
   <form [formGroup]="addLeilaoForm" class="form mt-4" (submit)="addLeilao()">
     <div class="form-group">
@@ -17,7 +18,7 @@
         t-clean>
       </thf-number>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <thf-upload
           formControlName="photo"
           class="form-control"
@@ -26,6 +27,10 @@
           (t-upload)="upload($event)"
           t-url="https://thf.totvs.com.br/sample/api/uploads/addFile">
         </thf-upload>
+    </div> -->
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Exemplo de input de arquivo</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
     </div>
     <div class="form-group">
       <thf-combo
@@ -36,13 +41,7 @@
         [t-options]="types_bid">
       </thf-combo>
     </div>
-    <thf-button
-      t-label="Adicionar"
-      t-type="submit"
-      class="btn btn-primary btn-block"
-      [t-disabled]="addLeilaoForm.invalid || addLeilaoForm.pending"
-      (t-click)="addLeilao()">
-    </thf-button>
+    <button [disabled]="addLeilaoForm.invalid" type="submit" class="btn btn-primary btn-block">Confirmar</button>
   </form>
 </thf-page-default>
 
