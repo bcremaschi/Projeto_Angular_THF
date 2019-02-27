@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddLeilaoComponent } from './add-leilao.component';
+import { AddAuctionComponent } from './add-auction.component';
 
 describe('AddLeilaoComponent', () => {
-  let component: AddLeilaoComponent;
-  let fixture: ComponentFixture<AddLeilaoComponent>;
+  let component: AddAuctionComponent;
+  let fixture: ComponentFixture<AddAuctionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddLeilaoComponent ]
+      declarations: [ AddAuctionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddLeilaoComponent);
+    fixture = TestBed.createComponent(AddAuctionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { AddLeilaoService } from './add-leilao.service';
+import { AddAuctionService } from './add-auction.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ThfUploadFile } from '@totvs/thf-ui/components/thf-field/thf-upload/thf-upload-file';
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
-import {  ThfComboOption } from '@totvs/thf-ui';
-import { NewLeilao } from './new-leilao';
+import { ThfComboOption } from '@totvs/thf-ui';
+import { NewAuction } from './new-auction';
 
 @Component({
-  selector: 'add-leilao-page',
-  templateUrl: './add-leilao.component.html'
+  selector: 'add-auction-page',
+  templateUrl: './add-auction.component.html'
 })
-export class AddLeilaoComponent implements OnInit {
-  addLeilaoForm: FormGroup;
+export class AddAuctionComponent implements OnInit {
+  addAuctionForm: FormGroup;
 
   types_bid: Array<ThfComboOption>;
   photo: ThfUploadFile;
 
   constructor(private formBuilder: FormBuilder,
               private thfNotification: ThfNotificationService,
-              private addLeilaoService: AddLeilaoService,
+              private addLeilaoService: AddAuctionService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.types_bid = this.getTypes();
 
-    this.addLeilaoForm = this.formBuilder.group({
+    this.addAuctionForm = this.formBuilder.group({
       name: ['',
         [
           Validators.required,
@@ -62,16 +62,16 @@ export class AddLeilaoComponent implements OnInit {
     console.log(this.photo);
   }
 
-  private addLeilao() {
-    const newLeilao = this.addLeilaoForm.getRawValue() as NewLeilao;
+  private addAuction() {
+    const newAuction = this.addAuctionForm.getRawValue() as NewAuction;
 
-    console.log(newLeilao);
+    console.log(newAuction);
 
     this.addLeilaoService
-      .addLeilao(newLeilao)
+      .addAuction(newAuction)
       .subscribe(() => {
         this.thfNotification.success('Data saved successfully!');
-        this.addLeilaoForm.reset();
+        this.addAuctionForm.reset();
       },
       err => console.log(err)
     );

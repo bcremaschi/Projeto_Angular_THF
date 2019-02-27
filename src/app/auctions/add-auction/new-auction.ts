@@ -1,6 +1,6 @@
 import { ThfSelectOption } from '@totvs/thf-ui';
 
-export class NewLeilao{
+export class NewAuction{
   'name': string;
   'photo': string;
   'base_price': 'number';

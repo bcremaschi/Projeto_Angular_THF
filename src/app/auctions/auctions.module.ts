@@ -5,14 +5,16 @@ import { ThfPageModule, ThfTabsModule, ThfModule, ThfDynamicModule, ThfFieldModu
 import { ThfNotificationModule } from '@totvs/thf-ui/services/thf-notification';
 import { ThfButtonModule } from '@totvs/thf-ui/components/thf-button';
 
-import { HomeModule } from './../home/home.module';
+import { HomeModule } from '../home/home.module';
 import { MenuComponent } from './menu/menu.component';
-import { AddLeilaoComponent } from './add-leilao/add-leilao.component';
+import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
+import { AddAuctionComponent } from './add-auction/add-auction.component';
 
 @NgModule({
   declarations: [
-    AddLeilaoComponent,
-    MenuComponent
+    AddAuctionComponent,
+    MenuComponent,
+    MyAuctionsComponent
   ],
   imports: [
     ThfModule,
@@ -29,4 +31,4 @@ import { AddLeilaoComponent } from './add-leilao/add-leilao.component';
   ],
 })
 
-export class LeiloesModule {}
+export class AuctionsModule {}

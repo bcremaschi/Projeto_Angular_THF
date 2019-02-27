@@ -17,7 +17,7 @@ export class AuthService {
             { email, password },
             { observe: 'response'})
         .pipe(tap(res => {
-            const authToken = res.headers.get('x-access-token');
+            const authToken = res.headers.get('');
 
             console.log(authToken);
         }));

@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ThfModule, ThfMenuModule } from '@totvs/thf-ui';
-import { LeiloesModule } from './leiloes/leiloes.module';
+import { ThfModule } from '@totvs/thf-ui';
+import { AuctionsModule } from './auctions/auctions.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { LeiloesModule } from './leiloes/leiloes.module';
     BrowserModule,
     AppRoutingModule,
     ThfModule,
-    LeiloesModule
+    AuctionsModule,
   ],
 
   providers: [],

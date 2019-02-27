@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
     this.authService
         .authenticate(email, password)
         .subscribe(
-          () => this.router.navigate(['add-leilao']),
+          () => this.router.navigate(['my-auctions-page']),
           err => {
             console.log(err);
             this.loginForm.reset();
