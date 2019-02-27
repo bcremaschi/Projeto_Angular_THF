@@ -34,7 +34,7 @@ export class AddAuctionComponent implements OnInit {
           Validators.maxLength(40)
         ]
       ],
-      base_price: [0,
+      base_price: [0.00,
         [
           Validators.required,
           Validators.nullValidator
@@ -54,12 +54,6 @@ export class AddAuctionComponent implements OnInit {
       { label: 'Lance fixo', value: 'bid_fix' },
       { label: 'Lance livre', value: 'bid_free' }
     ];
-  }
-
-  private upload(event: ThfUploadFile) {
-    this.photo = event.file;
-
-    console.log(this.photo);
   }
 
   private addAuction() {
