@@ -1,8 +1,8 @@
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
-import { ThfLoginComponent } from '@totvs/thf-ui';
+
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'login-page',
@@ -19,7 +19,6 @@ export class LoginPageComponent implements OnInit {
   constructor(private authService: AuthService,
               private formBuilder: FormBuilder,
               private router: Router) { }
-
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],

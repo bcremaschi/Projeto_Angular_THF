@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from "ng2-currency-mask";
@@ -11,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 import { AddAuctionComponent } from './add-auction/add-auction.component';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { CoreModule } from '../core/core.module';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -29,6 +31,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     MyAuctionsComponent
   ],
   imports: [
+    CommonModule,
     ThfModule,
     ThfDynamicModule,
     ThfNotificationModule,
@@ -40,7 +43,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ReactiveFormsModule,
     FormsModule,
     CurrencyMaskModule,
-    HomeModule
+    HomeModule,
+    CoreModule
   ],
 
   providers: [{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }]

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,10 +14,12 @@ import { AuctionsModule } from './auctions/auctions.module';
 
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ThfModule,
-    AuctionsModule,
+    AuctionsModule
+
   ],
 
   providers: [],
