@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -6,11 +7,19 @@ import { MyAuctionsComponent } from './auctions/my-auctions/my-auctions.componen
 import { AddAuctionComponent } from './auctions/add-auction/add-auction.component';
 
 const routes: Routes = [
-  { path: '', component: LoginPageComponent},
-  { path: 'my-auctions-page', component: MyAuctionsComponent },
-  { path: 'add-auction-page/my-auctions-page', component: MyAuctionsComponent },
-  { path: 'my-auctions-page/add-auction-page', component: AddAuctionComponent },
-  { path: 'add-auction-page', component: AddAuctionComponent }
+  {
+    path: '',
+    component: LoginPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-auctions-page',
+    component: MyAuctionsComponent
+  },
+  {
+    path: 'add-auction-page',
+    component: AddAuctionComponent
+  }
 ];
 
 @NgModule({

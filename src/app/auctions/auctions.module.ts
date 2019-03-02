@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +13,6 @@ import { MenuComponent } from './menu/menu.component';
 import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 import { AddAuctionComponent } from './add-auction/add-auction.component';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
-import { CoreModule } from '../core/core.module';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",

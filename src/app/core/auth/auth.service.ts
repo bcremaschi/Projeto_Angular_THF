@@ -1,3 +1,4 @@
+import { Auth } from './auth';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
@@ -22,9 +23,9 @@ export class AuthService {
             { email, password },
             { observe: 'response'})
         .pipe(tap(res => {
-            const authToken = res.body;
+            const authToken = res.body as Auth;
             this.userService.setToken('access_token', authToken.access_token);
-            //this.userService.setToken('refresh_token', authToken.refresh_token);
+            this.userService.setToken('refresh_token', authToken.refresh_token);
         }));
   }
 
@@ -35,11 +36,9 @@ export class AuthService {
       { refreshToken },
       { observe: 'response'})
       .pipe(tap(res => {
-        const authToken = res.body;
+        const authToken = res.body as Auth;
 
         this.userService.setToken('access_token', authToken.access_token);
       }));
   }
-
-
 }

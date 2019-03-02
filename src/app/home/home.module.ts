@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { ThfModule } from '@totvs/thf-ui';
     RouterModule,
     ReactiveFormsModule,
     ThfModule,
-    ThfPageLoginModule
+    ThfPageLoginModule,
+    CoreModule
   ],
 
   providers: [],

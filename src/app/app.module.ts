@@ -19,7 +19,6 @@ import { AuctionsModule } from './auctions/auctions.module';
     AppRoutingModule,
     ThfModule,
     AuctionsModule
-
   ],
 
   providers: [],

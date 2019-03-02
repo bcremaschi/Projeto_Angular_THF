@@ -1,5 +1,6 @@
 <app-menu></app-menu>
 <thf-page-default>
+  <app-header></app-header>
   <form [formGroup]="addAuctionForm" class="form mt-4" (submit)="addAuction()">
     <div class="form-group">
         <label for="name">Nome do Leilão</label>
@@ -39,4 +40,3 @@
     <button [disabled]="addAuctionForm.invalid" type="submit" class="btn btn-primary btn-block">Confirmar</button>
   </form>
 </thf-page-default>
-
