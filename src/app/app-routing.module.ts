@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './home/login-page/login-page.component';
 import { MyAuctionsComponent } from './auctions/my-auctions/my-auctions.component';
 import { AddAuctionComponent } from './auctions/add-auction/add-auction.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'add-auction-page',
     component: AddAuctionComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

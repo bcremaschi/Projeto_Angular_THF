@@ -3,6 +3,7 @@ import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification'
 import { MyAuctionsServer } from 'src/app/shared/components/draft-card/draft-auctions.service';
 import { TokenService } from 'src/app/core/token/token.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { NewDraftAuctions } from './new-draft-autions';
 
 @Component({
   selector: 'app-draft-card',
@@ -11,6 +12,8 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 })
 
 export class DraftCardComponent implements OnInit {
+
+  auctions: NewDraftAuctions[] = [];
 
   constructor(private myAuctionsService: MyAuctionsServer,
               private tokenService: TokenService,
@@ -22,7 +25,7 @@ export class DraftCardComponent implements OnInit {
   }
 
   private getAuctions() {
-    //Realiza o refresh do token de acesso na requisi��o.
+    // Realiza o refresh do token de acesso na requisição.
     this.authService.refresh()
       .subscribe(() => {
         console.log('Refresh realizado com sucesso!')
@@ -31,9 +34,9 @@ export class DraftCardComponent implements OnInit {
     );
 
     this.myAuctionsService.getAuctions(this.tokenService.getToken('access_token'))
-      .subscribe(() => {
-        console.log('Leilões carregados com sucesso.');
-        },
+      .subscribe(auctions => {
+        this.auctions = auctions;
+      },
         err => this.thfNotification.error(err)
       );
   }

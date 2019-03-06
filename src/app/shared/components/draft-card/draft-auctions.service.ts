@@ -16,22 +16,20 @@ const API_URL = 'http://localhost:8080';
 
 export class MyAuctionsServer {
 
-  constructor(private http: HttpClient,
-              private headers: HttpHeaders,
-              private params: HttpParams) {}
+  constructor(private http: HttpClient) {}
 
   getAuctions(auth_token: string) {
-    this.headers =  this.headers.set('Authorization', 'Bearer ' + auth_token);
+    let headers: HttpHeaders = new HttpHeaders();
+    let params: HttpParams = new HttpParams();
+    headers =  headers.set('Authorization', 'Bearer ' + auth_token);
 
-    this.params = this.params.set('page', '');
-    this.params = this.params.set('pageSize', '5');
-    this.params = this.params.set('name', '');
-    this.params = this.params.set('status', '0');
-    this.params = this.params.set('owner', '');
+    params = params.set('page', '')
+                    .set('pageSize', '5')
+                    .set('name', '')
+                    .set('status', '0')
+                    .set('owner', '');
 
-    console.log(this.params);
-
-    return this.http.get<NewDraftAuctions[]>(API_URL + '/api/v1/auctions', {headers: this.headers, params: this.params});
+    return this.http.get<NewDraftAuctions[]>(API_URL + '/api/v1/auctions', {headers: headers, params: params});
   }
 
   deleteAuctions() {
