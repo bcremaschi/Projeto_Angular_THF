@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { ThfModule } from '@totvs/thf-ui';
 import { AuctionsModule } from './auctions/auctions.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +20,6 @@ import { AuctionsModule } from './auctions/auctions.module';
     AuctionsModule
   ],
 
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

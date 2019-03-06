@@ -1,42 +1,73 @@
 <app-menu></app-menu>
 <thf-page-default>
   <app-header></app-header>
-  <form [formGroup]="addAuctionForm" class="form mt-4" (submit)="addAuction()">
-    <div class="form-group">
-        <label for="name">Nome do Leilão</label>
-        <input
-            formControlName="name"
-            type="text"
-            placeholder="Nome do Leilão"
-            class="form-control"
-            required
-            autofocus >
+  <div class="row">
+    <div class="col-10 text-left my-2">
+      <h1 class="text-primary">Adicionar Leilão</h1>
     </div>
-    <div class="form-group">
-        <label for="base_price">Preço Base</label>
-        <input
-            formControlName="base_price"
-            placeholder="Preço Base"
-            class="form-control"
-            type="currency"
-            min="0.01"
-            step="0.01"
-            currencyMask [(ngModel)]="value"
-            required >
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-12">
+      <form [formGroup]="addAuctionForm" class="form mt-4" (submit)="addAuction()">
+        <div class="form-row">
+
+          <div class="form-group col-sm-6">
+              <label for="name">Nome do Leilão</label>
+              <input
+                  formControlName="name"
+                  type="text"
+                  placeholder="Nome do Leilão"
+                  class="form-control"
+                  required
+                  autofocus >
+              <app-vmessage
+                text="Favor preencher o nome do leilão."
+                *ngIf="addAuctionForm.get('name').errors?.required">
+              </app-vmessage>
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="base_price">Preço Base</label>
+              <input
+                  formControlName="base_price"
+                  placeholder="Preço Base"
+                  class="form-control"
+                  type="currency"
+                  min="0.01"
+                  step="0.01"
+                  currencyMask
+                  required >
+              <app-vmessage
+                text="Favor preencher o valor base do leilão."
+                *ngIf="addAuctionForm.get('base_price').errors?.required">
+              </app-vmessage>
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="bid_type">Tipo de Lance</label>
+              <select
+                  formControlName="bid_type"
+                  class="form-control"
+                  required>
+                  <option value="1">Lance Fixo</option>
+                  <option value="2">Lance Livre</option>
+              </select>
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="upload">Selecione a foto para o leilão.</label>
+              <input
+                formControlName="photo"
+                type="file"
+                accept="img/*"
+                maxsize="5000"
+                class="form-control-file"
+                id="upload"
+                (change)=" photo = $event.target.files[0]">
+          </div>
+          <div class="form-group col-sm-6">
+            <button [disabled]="addAuctionForm.invalid" type="submit" class="btn btn-primary mr-3">Confirmar</button>
+            <button type="submit" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-        <label for="upload">Selecione a foto para o leilão.</label>
-        <input type="file" class="form-control-file" id="upload">
-    </div>
-    <div class="form-group">
-        <select
-            formControlName="bid_type"
-            class="form-control"
-            required>
-            <option value="bid_fixed">Lance Fixo</option>
-            <option value="bid_free">Lance Livre</option>
-        </select>
-    </div>
-    <button [disabled]="addAuctionForm.invalid" type="submit" class="btn btn-primary btn-block">Confirmar</button>
-  </form>
+  </div>
 </thf-page-default>

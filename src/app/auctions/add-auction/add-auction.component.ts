@@ -1,31 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { AddAuctionService } from './add-auction.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
-import { ThfUploadFile } from '@totvs/thf-ui/components/thf-field/thf-upload/thf-upload-file';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
-import { ThfComboOption } from '@totvs/thf-ui';
+import { AddAuctionService } from './add-auction.service';
 import { NewAuction } from './new-auction';
+import { TokenService } from 'src/app/core/token/token.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'add-auction-page',
   templateUrl: './add-auction.component.html'
 })
 export class AddAuctionComponent implements OnInit {
   addAuctionForm: FormGroup;
-
-  types_bid: Array<ThfComboOption>;
-  photo: ThfUploadFile;
+  photo: File;
+  base64textString: string = '';
+  newAuction: NewAuction;
 
   constructor(private formBuilder: FormBuilder,
               private thfNotification: ThfNotificationService,
-              private addLeilaoService: AddAuctionService,
-              private router: Router) { }
+              private addAuctionService: AddAuctionService,
+              private router: Router,
+              private tokenService: TokenService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.types_bid = this.getTypes();
-
     this.addAuctionForm = this.formBuilder.group({
       name: ['',
         [
@@ -40,35 +42,53 @@ export class AddAuctionComponent implements OnInit {
           Validators.nullValidator
         ]
       ],
-      photo: [''],
       bid_type: ['1',
         [
           Validators.required
         ]
-      ]
+      ],
+      photo: [''],
     });
   }
 
-  private getTypes(): Array<ThfComboOption> {
-    return [
-      { label: 'Lance fixo', value: 'bid_fix' },
-      { label: 'Lance livre', value: 'bid_free' }
-    ];
-  }
-
   private addAuction() {
-    const newAuction = this.addAuctionForm.getRawValue() as NewAuction;
+    this.newAuction = this.addAuctionForm.getRawValue();
+    //Transforma a foto selecionada em base64.
+    this.setBase64File(this.photo);
 
-    console.log(newAuction);
-
-    this.addLeilaoService
-      .addAuction(newAuction)
+    //Realiza o refresh do token de acesso na requisi��o.
+    this.authService.refresh()
       .subscribe(() => {
-        this.thfNotification.success('Data saved successfully!');
+        console.log('Refresh realizado com sucesso!')
+      },
+      err => this.thfNotification.error(err)
+    );
+
+    //Realiza o post para inclus�o de um novo leil�o.
+
+    this.addAuctionService
+      .addAuction(this.newAuction, this.tokenService.getToken('access_token'))
+      .subscribe(() => {
+        this.thfNotification.success('Leilão criado com sucesso!');
         this.addAuctionForm.reset();
       },
-      err => console.log(err)
+      err => this.thfNotification.error(err)
     );
   }
+
+  //Transforma a foto recebida em base64
+  setBase64File(file): string {
+    const reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsBinaryString(file);
+    return '';
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);
+
+    this.newAuction.photo = this.base64textString;
+}
 
 }

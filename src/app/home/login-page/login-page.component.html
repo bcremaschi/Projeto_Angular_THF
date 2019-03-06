@@ -10,6 +10,10 @@
                     placeholder="Email"
                     required="required"
                     autofocus>
+                <app-vmessage
+                    text="Favor preencher com um email válido."
+                    *ngIf="loginForm.get('email').errors?.required">
+                </app-vmessage>
             </div>
             <div class="form-group">
                 <input
@@ -18,6 +22,10 @@
                     class="form-control"
                     placeholder="Password"
                     required="required">
+                <app-vmessage
+                    text="Favor preencher com uma senha válida."
+                    *ngIf="loginForm.get('password').errors?.required">
+                </app-vmessage>
             </div>
             <div class="form-group">
                 <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Log in</button>

@@ -5,8 +5,9 @@ import { tap } from 'rxjs/operators';
 
 import { TokenService } from './../token/token.service';
 import { UserService } from '../user/user.service';
+import { Refresh } from './refresh';
 
-const API_URL = 'http://138.219.88.80:17114';
+const API_URL = 'http://localhost:8080';
 //const API_URL = 'http://10.171.67.175:17114';
 
 @Injectable({ providedIn: 'root' })
@@ -17,10 +18,11 @@ export class AuthService {
               private tokenService: TokenService,
               private userService: UserService) {}
 
-  authenticate(email: string, password: string){
+  //Realiza o post de autenticação na API.
+  authenticate(email: string, password: string) {
     return  this.http
         .post(API_URL + '/api/v1/auth/new',
-            { email, password },
+            { 'email': email, 'password': password },
             { observe: 'response'})
         .pipe(tap(res => {
             const authToken = res.body as Auth;
@@ -29,15 +31,16 @@ export class AuthService {
         }));
   }
 
+  //Realiza o post de refresh do token de autenticação na API.
   refresh() {
     const refreshToken = this.tokenService.getToken('refresh_token');
+
     return this.http
       .post(API_URL + '/api/v1/auth/refresh',
-      { refreshToken },
+       { 'refresh_token': refreshToken} ,
       { observe: 'response'})
       .pipe(tap(res => {
-        const authToken = res.body as Auth;
-
+        const authToken = res.body as Refresh;
         this.userService.setToken('access_token', authToken.access_token);
       }));
   }
