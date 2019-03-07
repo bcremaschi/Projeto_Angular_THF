@@ -2,7 +2,8 @@ import { CoreModule } from './../core/core.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 
 import { ThfPageModule, ThfMenuModule } from '@totvs/thf-ui';
 
@@ -11,7 +12,9 @@ import { MenuComponent } from './menu/menu.component';
 import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 import { AddAuctionComponent } from './add-auction/add-auction.component';
 import { SharedModule } from '../shared/shared.module';
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { ActiveCardsComponent } from './my-auctions/active-cards/active-cards.component';
+import { ModalComponent } from './my-auctions/modal/modal.component';
+import { DraftCardComponent } from './my-auctions/draft-card/draft-card.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -26,7 +29,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   declarations: [
     AddAuctionComponent,
     MenuComponent,
-    MyAuctionsComponent
+    MyAuctionsComponent,
+    DraftCardComponent,
+    ActiveCardsComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,

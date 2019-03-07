@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DraftCardComponent } from './components/draft-card/draft-card.component';
-import { ActiveCardsComponent } from './components/active-cards/active-cards.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VmessageComponent } from './components/vmessage/vmessage.component';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
@@ -21,9 +18,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
 @NgModule({
   declarations: [
-    DraftCardComponent,
-    ActiveCardsComponent,
-    ModalComponent,
     VmessageComponent
   ],
 
@@ -35,9 +29,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   ],
 
   exports: [
-    DraftCardComponent,
-    ActiveCardsComponent,
-    ModalComponent,
     VmessageComponent
   ],
 

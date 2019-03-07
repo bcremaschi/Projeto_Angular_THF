@@ -1,0 +1,22 @@
+<div class="row">
+  <div *ngFor="let auction of auctions" class="col-sm-4 mb-3">
+    <div class="card w-75">
+      <img class="card-img-top" [src]="photo" [alt]="name">
+      <div class="card-body">
+        <h4 class="card-title">{{ name }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Preço Base do Leilão</h6>
+        <h5 class="card-subtitle mb-2 text-muted">R$ {{ base_price }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Dono</h6>
+        <h5 class="card-subtitle mb-2 text-muted">{{ owner }}</h5>
+      </div>
+      <div class="card-body">
+        <button type="button" class="btn btn-success btn-block">Ativar</button>
+        <button type="button" class="btn btn-danger btn-block">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

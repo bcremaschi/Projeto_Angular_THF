@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './home/login-page/login-page.component';
 import { MyAuctionsComponent } from './auctions/my-auctions/my-auctions.component';
 import { AddAuctionComponent } from './auctions/add-auction/add-auction.component';
+import { MyAuctionsResolver } from './auctions/my-auctions/my-auctions.resolver';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 const routes: Routes = [
@@ -15,7 +16,10 @@ const routes: Routes = [
   },
   {
     path: 'my-auctions-page',
-    component: MyAuctionsComponent
+    component: MyAuctionsComponent,
+    resolve: {
+      auctions: MyAuctionsResolver
+    }
   },
   {
     path: 'add-auction-page',

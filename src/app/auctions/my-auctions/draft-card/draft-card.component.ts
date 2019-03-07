@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
-import { MyAuctionsServer } from 'src/app/shared/components/draft-card/draft-auctions.service';
 import { TokenService } from 'src/app/core/token/token.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { NewDraftAuctions } from './new-draft-autions';
+import { DraftAuctionsServer } from './draft-auctions.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-draft-card',
@@ -13,14 +14,21 @@ import { NewDraftAuctions } from './new-draft-autions';
 
 export class DraftCardComponent implements OnInit {
 
-  auctions: NewDraftAuctions[] = [];
+  @Input() name: string = '';
+  @Input() photo: string = '';
+  @Input() base_price: number = 0;
+  @Input() owner: string = '';
+  @Input() auctions: NewDraftAuctions[] = [];
 
-  constructor(private myAuctionsService: MyAuctionsServer,
+  constructor(private myAuctionsService: DraftAuctionsServer,
               private tokenService: TokenService,
               private authService: AuthService,
-              private thfNotification: ThfNotificationService ) { }
+              private thfNotification: ThfNotificationService,
+              private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit() {
+    this.auctions = this.activatedRoute.snapshot.data['auctions'];
+
     this.getAuctions();
   }
 
